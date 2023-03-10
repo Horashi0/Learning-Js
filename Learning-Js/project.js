@@ -7,11 +7,22 @@
 // 6. Give user winnings if they won. If not take their bet
 // 7. Play again
 
-function deposit() {
-    return 1
-}
-const deposit_learn = () => {
+const prompt = require("prompt-sync")();
+
+const deposit = () => {
+    while (true) {
+        const DepositAmount = prompt("Enter a deposit amount: ");
+        const Float_DepositAmount = parseFloat(DepositAmount);
+
+        if (isNaN(Float_DepositAmount) || Float_DepositAmount <= 0) {
+            console.log("Invalid deposit amount, try again ")
+        }
+        else {
+            return Float_DepositAmount
+        }
+    }
 
 }
 
-deposit()
+const DepositAmount = deposit();
+console.log(DepositAmount)
