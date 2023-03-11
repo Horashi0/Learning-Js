@@ -98,12 +98,23 @@ const transpose = (reels) => {
             rows[i].push(reels[j][i])
         }
     }
-
     return rows
 }
-
+const printRows = (rows) => {
+    for (const row of rows) {
+        let rowString = "";
+        for (const [i, symbol] of rows.entries()) {
+            rowString += symbol
+            if (i != rows.length - 1) {
+                rowString += " | "
+            }
+        }
+        console.log(rowString)
+    }
+}
 let Balance = deposit();
 const LinesAmount = GetNumberOfLines();
 const Bet = GetBet(Balance, LinesAmount);
 const reels = spin();
 const rows = transpose(reels)
+printRows(rows);
