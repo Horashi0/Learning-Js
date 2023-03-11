@@ -26,7 +26,6 @@ const SYMBOL_VALUES = {
     D: 2
 }
 
-
 const deposit = () => {
     while (true) {
         const DepositAmount = prompt("Enter a deposit amount: ");
@@ -78,7 +77,7 @@ const spin = () => {
     }
     const reels = [];
     for (let x = 0; x < COLS; x++) {
-        reels.push([])
+        reels.push([]);
         const reelSymbols = [...symbols];
         for (let j = 0; j < ROWS; j++) {
             const randomIndex = Math.floor(Math.random() * reelSymbols.length);
@@ -89,8 +88,22 @@ const spin = () => {
     }
     return reels;
 }
-const reels = spin()
-console.log(reels)
+
+const transpose = (reels) => {
+    const rows = [];
+
+    for (let i = 0; i < ROWS; i++) {
+        rows.push([])
+        for (let j = 0; j < COLS; j++) {
+            rows[i].push(reels[j][i])
+        }
+    }
+
+    return rows
+}
+
 let Balance = deposit();
-const LinesAmount = GetNumberOfLines()
+const LinesAmount = GetNumberOfLines();
 const Bet = GetBet(Balance, LinesAmount);
+const reels = spin();
+const rows = transpose(reels)
